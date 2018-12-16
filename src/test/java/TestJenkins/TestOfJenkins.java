@@ -27,6 +27,11 @@ public class TestOfJenkins {
     WebDriver driver = null;
     String chromedriver_path = "D:\\ChromeDriver\\chromedriver.exe";
 
+    private String username = "someuser";
+    private String password = "somepassword";
+    private String fullname = "Some Full Name";
+    private String email = "some@addr.dom";
+
     @BeforeClass
     public void beforeClass() throws IOException {
         System.setProperty("webdriver.chrome.driver", chromedriver_path);
@@ -96,25 +101,25 @@ public class TestOfJenkins {
 
         Assert.assertTrue(page.isFormPresent(), "Form isn't exist!");
 
-        page.setUsername_locator("someuser");
-        Assert.assertEquals(page.getUsername_locator(), "someuser",
-                "Unable to fill 'someuser' field" );
+        page.setUsername_locator(username);
+        Assert.assertEquals(page.getUsername_locator(), username,
+                "Unable to fill '" + username + "' field" );
 
-        page.setPassword_locator("somepassword");
-        Assert.assertEquals(page.getPassword_locator(), "somepassword",
-                "Unable to fill 'somepassword' field");
+        page.setPassword_locator(password);
+        Assert.assertEquals(page.getPassword_locator(), password,
+                "Unable to fill '" + password + "' field");
 
-        page.setPasswConf_locator("somepassword");
-        Assert.assertEquals(page.getPasswConf_locator(), "somepassword",
-                "Unable to fill 'somepassword' field");
+        page.setPasswConf_locator(password);
+        Assert.assertEquals(page.getPasswConf_locator(),  password,
+                "Unable to fill '" + password + "' field");
 
-        page.setFullname_locator("Some Full Name");
-        Assert.assertEquals(page.getFullname_locator(), "Some Full Name",
-                "Unable to fill 'Some Full Name' field");
+        page.setFullname_locator(fullname);
+        Assert.assertEquals(page.getFullname_locator(), fullname,
+                "Unable to fill '" + fullname + "' field");
 
-        page.setEmail_locator("some@addr.dom");
-        Assert.assertEquals(page.getEmail_locator(), "some@addr.dom",
-                "Unable to fill 'some@addr.dom' field");
+        page.setEmail_locator(email);
+        Assert.assertEquals(page.getEmail_locator(), email,
+                "Unable to fill '" + email + "' field");
 
         page.submitForm();
         Assert.assertEquals(driver.getTitle(), "Users [Jenkins]",
@@ -131,7 +136,9 @@ public class TestOfJenkins {
         Assert.assertEquals(driver.getTitle(), "Users [Jenkins]",
                 "Webpage didn't open");
 
-       // Assert.assertFalse(page.existElement("someuser"));
+       Assert.assertTrue(page.isAbsentElement());
+       Assert.assertTrue(page.isAbsentDeleteUserLink());
+       Assert.assertTrue(page.isAbsentDeleteAdminLink());
     }
 
 }
