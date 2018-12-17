@@ -140,5 +140,4 @@ public class TestOfJenkins {
        Assert.assertTrue(page.isAbsentDeleteUserLink());
        Assert.assertTrue(page.isAbsentDeleteAdminLink());
     }
-
 }
